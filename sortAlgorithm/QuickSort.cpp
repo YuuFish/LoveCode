@@ -1,6 +1,16 @@
 #include <iostream>
 using namespace std;
 
+/*
+
+三次取中作为枢轴，避免了当排序数组有序时时间复杂度退化为O(N^2)的情况
+	注：STL中sort的实现当元素个数少于10个时，调用插入排序
+参考网站：
+	http://blog.csdn.net/insistgogo/article/details/7785038
+	http://baike.baidu.com/link?url=cskKnDW-StS4kn8P_Q_n69RDxqcKcF46JNMdLcALdxWPoTsOO5ZEi-b3FKBocA3ScARIgiVx4ZuiEjXMw2qHa_
+	
+*/
+
 void swap(int& a , int& b)
 {
 	a=a^b;  
@@ -36,6 +46,13 @@ void Qsort(int a[], int low, int high)
 {
 	if(a==NULL)
 		return;
+	
+	// if (high - low + 1 < 10)   // STL中的代码，如果元素个数比较少，使用插入排序
+    // {  
+    //     InsertSort(arr,low,high);  
+    //     return;  
+    // }  
+	
 	SelectPivotMedianOfThree(a, low, high);
     if(low >= high)
     {
