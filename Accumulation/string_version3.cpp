@@ -62,6 +62,8 @@ String::~String()
 	}
 }
 
+// 在类的成员函数中，返回引用的类对象，当然不能是函数内定义的类对象（会释放掉），一般为this指向的对象；
+// 引用返回左值（即a=b=c是可以的），对于返回值的函数，其返回的是一个右值不可以改变的，因此返回值的话不可以连续赋值；
 String& String::operator=(const String& other)
 {
 	if(m_data != other.m_data)
@@ -74,6 +76,7 @@ String& String::operator=(const String& other)
 	return *this;
 }
 
+// "+"运算符的重载不能返回引用，因为它返回的是在函数内定义的类对象；
 String String::operator+(const String& other)
 {
 	String ret;
