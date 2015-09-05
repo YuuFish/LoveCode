@@ -30,6 +30,8 @@ int main()
 template<typename T>
 void BubbleSort(T a[], int n)
 {
+	if(NULL == a || n <= 0)
+		return;
 	for(int i = 0; i < n-1; i++)
 	{
 		bool isSwap = false;
