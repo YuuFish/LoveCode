@@ -21,26 +21,21 @@ void swap(int array[], int i, int j)
     array[j] = temp;
 }
 
-void BubbleSort(int array[], int len) // O(n*n)
+void SelectionSort(int array[], const int len) // O(n*n)
 {
-    int i = 0;
-    int j = 0;
-    int exchange = 1;
-    
-    for(i=0; (i<len) && exchange; i++)
-    {
-        exchange = 0;
-        
-        for(j=len-1; j>i; j--)
-        {
-            if( array[j] < array[j-1] )
-            {
-                swap(array, j, j-1);
-                
-                exchange = 1;
-            }
-        }
-    }
+	if(NULL != array && len > 0)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			int min = i;
+			for(int j = i+1; j< len; j++)
+			{
+				if(array[j] < array[min])
+					min = j;
+			}
+			swap(array, min, i);
+		}
+	}
 }
 
 int main()
@@ -50,7 +45,7 @@ int main()
     
     println(array, len);
     
-    BubbleSort(array, len);
+    SelectionSort(array, len);
     
     println(array, len);
     
